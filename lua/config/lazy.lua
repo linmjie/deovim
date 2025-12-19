@@ -59,6 +59,15 @@ require("lazy").setup({
         },
     },
     { "nvim-tree/nvim-web-devicons", opts = {} },
+    {
+        'nvim-lualine/lualine.nvim',
+        options =
+        {
+            icons_enabled = true,
+            theme = 'dracula'
+        },
+        dependencies = { 'nvim-tree/nvim-web-devicons' }
+    }
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
@@ -68,4 +77,5 @@ require("lazy").setup({
 })
 
 require("catppuccin").setup()
+require("lualine").setup()
 vim.cmd.colorscheme "catppuccin"
