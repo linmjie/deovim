@@ -9,6 +9,8 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set('n', 'K', vim.lsp.buf.hover)
 vim.keymap.set('n', "<leader>rn", vim.lsp.buf.rename, {})
 vim.keymap.set('n', "<leader>ca", vim.lsp.buf.code_action)
+vim.keymap.set('n', "<leader>gfm", vim.lsp.buf.format, {})
+
 vim.keymap.set('n', "<leader>t", function() vim.cmd('buffer#') end)
 vim.keymap.set('v', "<leader>cc", '"+y')
 

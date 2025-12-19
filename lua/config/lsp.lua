@@ -34,3 +34,35 @@ vim.diagnostic.config({
     --current_line = true,
 })
 
+--custom
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+vim.lsp.config(
+    'clangd',
+        {
+            filetypes = {'c', 'cpp'},
+            capabilities = capabilities,
+            ...  -- other lspconfig configs
+        },
+    'rust-analyzer',
+        {
+            capabilities = capabilities
+        },
+    'lua-ls',
+        {
+            capabilities = capabilities
+        },
+    'ts-ls',
+        {
+            capabilities = capabilities
+        },
+    'jdtls',
+        {
+            capabilities = capabilities
+        },
+    'pyright',
+        {
+            capabilities = capabilities
+        }
+)
+
