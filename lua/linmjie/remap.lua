@@ -26,3 +26,5 @@ vim.keymap.set("n", "<leader>dx", ":DapTerminate<CR>")
 vim.keymap.set("n", "<leader>dov", ":DapStepOver<CR>")
 vim.keymap.set("n", "<leader>dou", ":DapStepOut<CR>")
 vim.keymap.set("n", "<leader>din", ":DapStepInto<CR>")
+
+vim.keymap.set('n', "<leader>sb", "i#!/usr/bin/env bash<ESC>")
