@@ -8,6 +8,8 @@
 -- so in ~.config/lsp/lua_ls.lua for lua_ls, for example.
 vim.lsp.enable('lua_ls')
 vim.lsp.enable('clangd')
+vim.lsp.enable('jdtls')
+vim.lsp.enable('pyright')
 vim.lsp.enable('rust-analyzer')
 
 --vim.api.nvim_create_autocmd('LspAttach', {
@@ -35,8 +37,8 @@ vim.diagnostic.config({
 })
 
 --custom
-local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
-local capabilities = require('blink.cmp').get_lsp_capabilities(cmp_capabilities)
+--local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = require('blink.cmp').get_lsp_capabilities() --get_lsp_capabilities(cmp_capabilities)
 
 vim.lsp.config(
     'clangd',
