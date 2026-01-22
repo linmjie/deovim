@@ -6,6 +6,7 @@ ls.add_snippets('cpp', require("snippets.cpp"))
 ls.add_snippets('cpp', require("snippets.basic_function"))
 ls.add_snippets('c', require("snippets.basic_function"))
 ls.add_snippets('java', require("snippets.basic_function"))
+ls.add_snippets('java', require("snippets.java"))
 
 ls.add_snippets('python', require("snippets.python"))
 ls.add_snippets('lua', require("snippets.neovim"))
