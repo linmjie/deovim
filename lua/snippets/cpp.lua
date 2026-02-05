@@ -23,6 +23,10 @@ end
 return {
     smartPointer("unique"),
     smartPointer("shared"),
+    s('hfn', {
+        t('[[nodiscard]] '),
+        i(1, 'void'), t(' '), i(2, 'name'), t('('), i(3, '/* params */'), t(');')
+    }),
 
     s("lambda", fmta([[[<capture>](<param>){ return <body>; }]], {
         capture = i(1),
