@@ -28,6 +28,10 @@ return {
         i(1, 'void'), t(' '), i(2, 'name'), t('('), i(3, '/* params */'), t(');')
     }),
 
+    s('vhfn', {
+        i(1, 'void'), t(' '), i(2, 'name'), t('('), i(3, '/* params */'), t(');')
+    }),
+
     s("lambda", fmta([[[<capture>](<param>){ return <body>; }]], {
         capture = i(1),
         param = i(2),
