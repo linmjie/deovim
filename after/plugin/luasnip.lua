@@ -1,6 +1,10 @@
 local ls = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
 
+ls.config.set_config({
+    updateevents = "TextChanged,TextChangedI"
+})
+
 ls.add_snippets('cpp', require("snippets.cpp"))
 
 ls.add_snippets('cpp', require("snippets.basic_function"))
