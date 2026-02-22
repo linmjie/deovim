@@ -21,6 +21,9 @@ local function smartPointer(pointerType)
 end
 
 return {
+    s('ts', {
+        t('this->')
+    }),
     smartPointer("unique"),
     smartPointer("shared"),
     s('hfn', {
@@ -37,6 +40,7 @@ return {
         param = i(2),
         body = i(3)
     })),
+
     s("anonymous_function", fmta([[[<capture>](<param>){<body>}]], {
         capture = i(1),
         param = i(2),

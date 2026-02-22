@@ -15,6 +15,9 @@ local function methodReference(shortcut, method)
 end
 
 return {
+    s('ts', {
+        t('this.')
+    }),
     basicPrint('sout', 'println'),
     basicPrint('soun', 'print'),
     methodReference('soutref', 'println'),
