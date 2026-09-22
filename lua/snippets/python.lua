@@ -25,7 +25,7 @@ return {
         }),
     }),
     s('pval', {
-        t("print(f'"), i(1), t(": {"), rep(1), t("}')")
+        t("print(f'{"), i(1), t("=}')")
     }),
 
     s('forenum', {
