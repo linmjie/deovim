@@ -29,6 +29,8 @@ vim.keymap.set('n', "<leader>nov", function()
     vim.diagnostic.config({ virtual_lines = new_config })
 end, { desc = 'Toggle diagnostic virtual_lines' })
 
+vim.keymap.set('n', "<leader>cn", function() vim.diagnostic.jump({count = 1}) end)
+vim.keymap.set('n', "<leader>cb", function() vim.diagnostic.jump({count = -1}) end)
 
 vim.keymap.set('n', "<leader>noi", function()
     local clangd_client = vim.lsp.get_clients({ name = 'clangd' })[1]
