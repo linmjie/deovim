@@ -1,5 +1,5 @@
 -- Bootstrap lazy.nvim
-vim.opt.termguicolors = false
+vim.opt.termguicolors = true
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
     local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -30,15 +30,14 @@ require("lazy").setup({
         { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
         {
             "sontungexpt/witch",
-            priority = 1000,
-            lazy = false,
-            config = function(_, opts)
-                require("witch").setup(opts)
-            end,
+            -- priority = 1000,
+            -- lazy = false,
+            -- config = function(_, opts)
+            --     require("witch").setup(opts)
+            -- end,
         },
         {
             "shoenot/witchesbrew.nvim",
-            priority = 1000,
             config = function()
                 -- Set transparency setting. Defaults to false.
                 require("witchesbrew").setup({ transparent = true })
