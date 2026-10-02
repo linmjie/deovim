@@ -1,3 +1,4 @@
+local miniterm = require('linmjie.miniterm')
 vim.cmd("set number")
 vim.cmd("set rnu")
 vim.cmd("set tabstop=4")
@@ -5,7 +6,15 @@ vim.cmd("set shiftwidth=4")
 vim.cmd("set expandtab")
 vim.cmd("set nowrap")
 
+vim.api.nvim_create_autocmd('TextYankPost', {
+    callback = function()
+        vim.hl.on_yank( { timeout = 50 } )
+    end
+})
+
 vim.g.mapleader = " "
+
+vim.keymap.set('n', '<leader>asdf', function() print(miniterm.get_run_command('test')) end)
 
 -- exit from file to directory
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
