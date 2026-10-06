@@ -1,4 +1,5 @@
 local miniterm = require('linmjie.miniterm')
+
 vim.cmd("set number")
 vim.cmd("set rnu")
 vim.cmd("set tabstop=4")
@@ -14,7 +15,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 vim.g.mapleader = " "
 
-vim.keymap.set('n', '<leader>asdf', function()
+vim.api.nvim_create_user_command('Run', function()
     local cmd = miniterm.get_run_command(vim.api.nvim_buf_get_name(0))
     vim.cmd.w()
     vim.cmd.vnew()
@@ -24,7 +25,7 @@ vim.keymap.set('n', '<leader>asdf', function()
 
     local id = vim.bo.channel
     vim.fn.chansend(id, cmd .. '\r\n')
-end)
+end, {})
 
 
 -- exit from file to directory
