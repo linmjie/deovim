@@ -1,9 +1,9 @@
-vim.cmd("set number")
-vim.cmd("set rnu")
-vim.cmd("set stop=4")
-vim.cmd("set shiftwidth=4")
-vim.cmd("set expand")
-vim.cmd("set nowrap")
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.wrap = false
 
 vim.api.nvim_create_autocmd('TextYankPost', {
     callback = function()
@@ -12,6 +12,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 vim.g.mapleader = " "
+
+vim.keymap.set('t', "<ESC><ESC>", '<C-\\><C-n>')
 
 -- exit from file to directory
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)

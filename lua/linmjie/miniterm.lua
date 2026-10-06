@@ -1,48 +1,67 @@
 local M = {}
 
-local compiler_map = {
-    lua = 'lua',
-    python = 'python3',
-    c = 'gcc',
-    cpp = 'g++',
+M.state = {
+    floating = {
+        buf = -1,
+        win = -1,
+    }
 }
 
-local flags = {
-    c = '-Wall -Wextra -fsanitize=address',
-    cpp = '-std=c++20 -Wall -Wextra -fsanitize=address'
-}
+M.create_floating_window = function(opts)
+    opts = opts or {}
+    local width = opts.width or math.floor(vim.o.columns * 0.8)
+    local height = opts.height or math.floor(vim.o.lines * 0.8)
 
-local needs_run_binary = {
-    c = true,
-    cpp = true,
-}
+    -- Calculate the position to center the window
+    local col = math.floor((vim.o.columns - width) / 2)
+    local row = math.floor((vim.o.lines - height) / 2)
 
-local get_run_command = function(file)
-    local filetype = vim.bo.filetype
-    local compiler = compiler_map[filetype]
-    local flag = flags[filetype] or ''
-    if flag ~= '' then
-        flag = flag .. ' '
+    -- Create a buffer
+    local buf = nil
+    if vim.api.nvim_buf_is_valid(opts.buf) then
+        buf = opts.buf
+    else
+        buf = vim.api.nvim_create_buf(false, true) -- No file, scratch buffer
     end
-    local opt = ''
-    if needs_run_binary[filetype] then
-        opt = ' && ./a.out'
-    end
-    if compiler_map[filetype] == nil then
-        return ''
-    end
-    return string.format('%s %s%s%s', compiler, flag, file, opt)
+
+    -- Define window configuration
+    local win_config = {
+        relative = "editor",
+        width = width,
+        height = height,
+        col = col,
+        row = row,
+        style = "minimal", -- No borders or extra UI elements
+        border = "rounded",
+    }
+
+    -- Create the floating window
+    local win = vim.api.nvim_open_win(buf, true, win_config)
+
+    return { buf = buf, win = win }
 end
 
-vim.api.nvim_create_user_command('Run', function()
-    local cmd = get_run_command(vim.api.nvim_buf_get_name(0))
-    vim.cmd.w()
-    vim.cmd.vnew()
-    vim.cmd.term()
-    vim.cmd.wincmd('J')
-    vim.api.nvim_win_set_height(0, 10)
-    local id = vim.bo.channel
-    vim.fn.chansend(id, cmd .. '\r\n')
-end, {})
+M.toggle_terminal = function()
+    if not vim.api.nvim_win_is_valid(M.state.floating.win) then
+        M.state.floating = M.create_floating_window { buf = M.state.floating.buf }
+        if vim.bo[M.state.floating.buf].buftype ~= "terminal" then
+            vim.cmd.terminal()
+        end
+    else
+        vim.api.nvim_win_hide(M.state.floating.win)
+    end
+end
+
+M.open_terminal = function()
+    if not vim.api.nvim_win_is_valid(M.state.floating.win) then
+        M.state.floating = M.create_floating_window { buf = M.state.floating.buf }
+        if vim.bo[M.state.floating.buf].buftype ~= "terminal" then
+            vim.cmd.terminal()
+        end
+    end
+end
+
+vim.api.nvim_create_user_command('ToggleTerm', M.toggle_terminal, {})
+vim.api.nvim_create_user_command('OpenTerm', M.open_terminal, {})
 
 return M
