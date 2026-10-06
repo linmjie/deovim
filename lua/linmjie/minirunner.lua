@@ -9,7 +9,7 @@ local compiler_map = {
 
 local flags = {
     c = '-Wall -Wextra -fsanitize=address',
-    cpp = '-std=c++20 -Wall -Wextra -fsanitize=address'
+    cpp = '-std=c++20 -Wall -Wextra -fsanitize=address -Wno-unused-parameter'
 }
 
 local needs_run_binary = {
@@ -39,5 +39,5 @@ vim.api.nvim_create_user_command('Run', function()
     vim.cmd.w()
     miniterm.open_terminal()
     local id = vim.bo[miniterm.state.floating.buf].channel
-    vim.fn.chansend(id, cmd .. '\r\n')
+    vim.fn.chansend(id, cmd .. '\r')
 end, {})

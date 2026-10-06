@@ -14,6 +14,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.g.mapleader = " "
 
 vim.keymap.set('t', "<ESC><ESC>", '<C-\\><C-n>')
+vim.keymap.set('n', "<leader>et", ':ToggleTerm<CR>')
+vim.keymap.set('n', "<leader>ot", ':OpenTerm<CR>')
+vim.keymap.set('n', "<C-CR>", ':Run<CR>')
 
 -- exit from file to directory
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)

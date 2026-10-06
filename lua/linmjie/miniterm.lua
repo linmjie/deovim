@@ -64,4 +64,8 @@ end
 vim.api.nvim_create_user_command('ToggleTerm', M.toggle_terminal, {})
 vim.api.nvim_create_user_command('OpenTerm', M.open_terminal, {})
 
+-- initialize terminal because it takes a while to boot conda on mac
+M.toggle_terminal()
+M.toggle_terminal()
+
 return M
