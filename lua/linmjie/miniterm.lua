@@ -17,7 +17,7 @@ local needs_run_binary = {
     cpp = true,
 }
 
-M.get_run_command = function(file)
+local get_run_command = function(file)
     local filetype = vim.bo.filetype
     local compiler = compiler_map[filetype]
     local flag = flags[filetype] or ''
@@ -33,5 +33,16 @@ M.get_run_command = function(file)
     end
     return string.format('%s %s%s%s', compiler, flag, file, opt)
 end
+
+vim.api.nvim_create_user_command('Run', function()
+    local cmd = get_run_command(vim.api.nvim_buf_get_name(0))
+    vim.cmd.w()
+    vim.cmd.vnew()
+    vim.cmd.term()
+    vim.cmd.wincmd('J')
+    vim.api.nvim_win_set_height(0, 10)
+    local id = vim.bo.channel
+    vim.fn.chansend(id, cmd .. '\r\n')
+end, {})
 
 return M

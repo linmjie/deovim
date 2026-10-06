@@ -1,10 +1,8 @@
-local miniterm = require('linmjie.miniterm')
-
 vim.cmd("set number")
 vim.cmd("set rnu")
-vim.cmd("set tabstop=4")
+vim.cmd("set stop=4")
 vim.cmd("set shiftwidth=4")
-vim.cmd("set expandtab")
+vim.cmd("set expand")
 vim.cmd("set nowrap")
 
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -14,19 +12,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 vim.g.mapleader = " "
-
-vim.api.nvim_create_user_command('Run', function()
-    local cmd = miniterm.get_run_command(vim.api.nvim_buf_get_name(0))
-    vim.cmd.w()
-    vim.cmd.vnew()
-    vim.cmd.term()
-    vim.cmd.wincmd('J')
-    vim.api.nvim_win_set_height(0, 10)
-
-    local id = vim.bo.channel
-    vim.fn.chansend(id, cmd .. '\r\n')
-end, {})
-
 
 -- exit from file to directory
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
@@ -38,7 +23,7 @@ vim.keymap.set('n', "<leader>rn", vim.lsp.buf.rename, {})
 vim.keymap.set('n', "<leader>ca", vim.lsp.buf.code_action)
 vim.keymap.set('n', "<leader>gfm", vim.lsp.buf.format, {})
 
--- switching to last open file (Alt-tab kinda)
+-- switching to last open file (Alt- kinda)
 vim.keymap.set('n', "<leader>t", function() vim.cmd('buffer#') end)
 
 -- paste to system clipboard
