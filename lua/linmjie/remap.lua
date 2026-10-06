@@ -14,7 +14,18 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 vim.g.mapleader = " "
 
-vim.keymap.set('n', '<leader>asdf', function() print(miniterm.get_run_command('test')) end)
+vim.keymap.set('n', '<leader>asdf', function()
+    local cmd = miniterm.get_run_command(vim.api.nvim_buf_get_name(0))
+    vim.cmd.w()
+    vim.cmd.vnew()
+    vim.cmd.term()
+    vim.cmd.wincmd('J')
+    vim.api.nvim_win_set_height(0, 10)
+
+    local id = vim.bo.channel
+    vim.fn.chansend(id, cmd .. '\r\n')
+end)
+
 
 -- exit from file to directory
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
