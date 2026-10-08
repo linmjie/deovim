@@ -66,6 +66,11 @@ vim.api.nvim_create_user_command('OpenTerm', M.open_terminal, {})
 
 -- initialize terminal because it takes a while to boot conda on mac
 M.toggle_terminal()
+local conda_env = vim.env.CONDA_DEFAULT_ENV or 'base'
+if conda_env ~= 'base' then
+    local id = vim.bo[M.state.floating.buf].channel
+    vim.fn.chansend(id, 'conda activate ' .. conda_env .. '; clear' .. '\r')
+end
 M.toggle_terminal()
 
 return M
