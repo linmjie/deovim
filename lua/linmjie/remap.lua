@@ -19,7 +19,9 @@ vim.keymap.set('n', "<leader>ot", ':OpenTerm<CR>')
 vim.keymap.set('n', "<C-CR>", ':Run<CR>')
 
 -- exit from file to directory
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set('n', "<leader>pv", vim.cmd.Ex)
+
+vim.keymap.set('n', "<leader>va", 'GVgg')
 
 vim.keymap.set('n', 'K', vim.lsp.buf.hover)
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
