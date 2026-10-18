@@ -1,3 +1,5 @@
 require("linmjie.miniterm")
 require("linmjie.minirunner")
 require("linmjie.remap")
+require("linmjie.fstr_converter")
+require("linmjie.fstr_converter_commands")
