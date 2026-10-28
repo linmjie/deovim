@@ -5,6 +5,7 @@ local compiler_map = {
     python = 'python3',
     c = 'gcc',
     cpp = 'g++',
+    go = 'go run'
 }
 
 local flags = {
